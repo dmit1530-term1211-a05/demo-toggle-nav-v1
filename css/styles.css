@@ -1,0 +1,123 @@
+body {
+    background-color: #192f5e;
+    font-family: sans-serif;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/** Header & Nav **/
+/** STEP 1: style the default/showing states starting with the small screen views, style the layout and links for how they will look when visibile **/
+
+header {
+    background: #fefefe;
+    padding: 2%;
+}
+
+header a {
+    color: rebeccapurple;
+    text-decoration: none;
+    /** allows the clickable area to take up the full width and height of the li */
+    display: block;
+}
+
+.menu a:hover,
+.menu a:active{
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+/** toggle btn **/
+.toggle-btn {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.toggle-btn:hover{
+    cursor: pointer;
+}
+
+/* change hamburger menu colour **/
+svg rect {
+    fill: mediumblue;
+}
+
+.menu li {
+    /** create extra space (additional line-height) - allows for a larger clickable area and also helps vertically center your content **/
+    line-height: 2.5rem; /**40px**/
+    text-align: center;
+}
+
+/** STEP 2: Hiding the menu **/
+/* Once the menu is hidden, this becomes our default load stage. 
+note: if you use display: none; - this property cannot be used with transitions. **/
+
+header nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/** STEP 3: Create a special class that will show the menu. This class only exists in CSS file for now. Next the JS will add the nav element for us. **/
+
+.show-nav {
+    max-height: 12.5rem;
+}
+
+/*** section ***/
+
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+}
+
+section h2 {
+    color: gainsboro;
+    font-size: 3.5rem; /**56px*/
+    margin-bottom: 2rem;
+}
+
+
+/** STEP 4: Add a media query and show the nav by default (hide the toggle btn) and style a horizontal nav **/
+
+/* 675px */
+@media screen and (min-width: 42.1875rem) {
+    .toggle-btn {
+        display: none;
+    } 
+    
+    /** we want to see nav by default, we have to give the height back */
+    header nav {
+        max-height: 12.5rem;
+        overflow: visible;
+    }
+    /** place the header and menu side-by-side, as well as the menu items */
+    header,
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    /** space out list items **/
+    .menu li {
+        margin-left: 0.5rem;
+    }
+    .menu li a {
+        padding: 0 0.5rem;
+    }
+
+}
